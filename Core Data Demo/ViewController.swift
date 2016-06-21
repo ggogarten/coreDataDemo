@@ -50,6 +50,17 @@ class ViewController: UIViewController {
                 
                 for result in results as! [NSManagedObject] {
                     
+                    result.setValue("Princesa", forKey: "username")
+                    
+                    do {
+                                                
+                    try context.save()
+                        
+                    } catch {
+                    
+                    }
+                    
+
                     if let username = result.valueForKey("username") as? String {
                     
                     print(username)
