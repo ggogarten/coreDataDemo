@@ -19,11 +19,11 @@ class ViewController: UIViewController {
         
         let context: NSManagedObjectContext = appDel.managedObjectContext
         
-//        var newUser = NSEntityDescription.insertNewObjectForEntityForName("Users", inManagedObjectContext: context)
+        var newUser = NSEntityDescription.insertNewObjectForEntityForName("Users", inManagedObjectContext: context)
+        
+//        newUser.setValue("Dani", forKey: "username")
 //        
-//        newUser.setValue("George", forKey: "username")
-//        
-//        newUser.setValue("pass123", forKey: "password")
+//        newUser.setValue("pass321", forKey: "password")
 //        
 //        do {
 //            
@@ -38,6 +38,8 @@ class ViewController: UIViewController {
         
         let request = NSFetchRequest(entityName: "Users")
         
+        request.predicate = NSPredicate(format: "username = %@", "Gluck")
+        
         request.returnsObjectsAsFaults = false
         
         do {
@@ -48,7 +50,9 @@ class ViewController: UIViewController {
                 
                 for result in results as! [NSManagedObject] {
                     
-                    print(result.valueForKey("username")!)
+                    if let username = result.valueForKey("username") as? String {
+                    
+                    print(username)
                     print(result.valueForKey("password")!)
                     
                 }
