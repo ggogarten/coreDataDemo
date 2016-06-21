@@ -53,8 +53,8 @@ class ViewController: UIViewController {
                     if let username = result.valueForKey("username") as? String {
                     
                     print(username)
-                    print(result.valueForKey("password")!)
                     
+                    }
                 }
                 
             }
