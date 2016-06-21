@@ -19,21 +19,21 @@ class ViewController: UIViewController {
         
         let context: NSManagedObjectContext = appDel.managedObjectContext
         
-        var newUser = NSEntityDescription.insertNewObjectForEntityForName("Users", inManagedObjectContext: context)
-        
-        newUser.setValue("George", forKey: "username")
-        
-        newUser.setValue("pass123", forKey: "password")
-        
-        do {
-            
-            try context.save()
-            
-        } catch {
-        
-            print("There was a problem")
-            
-        }
+//        var newUser = NSEntityDescription.insertNewObjectForEntityForName("Users", inManagedObjectContext: context)
+//        
+//        newUser.setValue("George", forKey: "username")
+//        
+//        newUser.setValue("pass123", forKey: "password")
+//        
+//        do {
+//            
+//            try context.save()
+//            
+//        } catch {
+//        
+//            print("There was a problem")
+//            
+//        }
         
         
         let request = NSFetchRequest(entityName: "Users")
@@ -44,7 +44,16 @@ class ViewController: UIViewController {
             
             let results = try context.executeFetchRequest(request)
             
-            print(results)
+            if results.count > 0 {
+                
+                for result in results as! [NSManagedObject] {
+                    
+                    print(result.valueForKey("username")!)
+                    print(result.valueForKey("password")!)
+                    
+                }
+                
+            }
             
         } catch {
             
